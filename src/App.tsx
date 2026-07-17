@@ -88,18 +88,23 @@ export default function App() {
     setAuditResult(null);
 
     try {
-      const response = await fetch('/api/audit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          industry: formData.industry,
-          currentTools: formData.currentTools,
-          challenges: formData.challenge
-        })
-      });
+const response = await fetch(
+  "https://script.google.com/macros/s/AKfycbxTIoG9yczBClecwiR0mo80dsjs8oknu5nmoV1ZYfdvkfePWHpAn1IKltxvztCFTeRZ/exec",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify({
+      name: formData.name,
+      email: formData.email,
+      company: formData.company,
+      industry: formData.industry,
+      tools: formData.currentTools,
+      bottleneck: formData.challenge
+    })
+  }
+);
       const data = await response.json();
       setAuditResult(data);
     } catch (err) {
@@ -138,7 +143,14 @@ export default function App() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+  name: formData.name,
+  email: formData.email,
+  company: formData.company,
+  industry: formData.industry,
+  tools: formData.currentTools,
+  bottleneck: formData.challenge
+})
       });
       const data = await response.json();
       setContactSuccess(data);
