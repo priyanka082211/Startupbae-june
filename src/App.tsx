@@ -88,18 +88,22 @@ export default function App() {
     setAuditResult(null);
 
     try {
-      const response = await fetch('/api/audit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          industry: formData.industry,
-          currentTools: formData.currentTools,
-          challenges: formData.challenge
-        })
-      });
+     const response = await fetch(
+  "https://script.google.com/macros/s/AKfycbyy-4rmBGyNndxRFILuTWFea8I3dQHxlQ8fXceJ7XoFjVXlkQRqx4NHBqlE5VjrVz2n/exec",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify({
+      name: formData.name,
+      email: formData.email,
+      company: formData.company,
+      phone: formData.phone,
+      challenge: formData.challenge
+    })
+  }
+);
       const data = await response.json();
       setAuditResult(data);
     } catch (err) {
@@ -135,11 +139,20 @@ export default function App() {
     setContactSuccess(null);
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
+      const response = await fetch("https://script.google.com/macros/s/AKfycbyy-4rmBGyNndxRFILuTWFea8I3dQHxlQ8fXceJ7XoFjVXlkQRqx4NHBqlE5VjrVz2n/exec",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify({
+      name: contactForm.name,
+      email: contactForm.email,
+      company: contactForm.company,
+      phone: contactForm.phone,
+      challenge: contactForm.challenge
+    })
+  });
       const data = await response.json();
       setContactSuccess(data);
       // Reset form on success
