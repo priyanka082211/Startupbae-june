@@ -1519,7 +1519,7 @@ const data = await response.json();
               
               {/* Keywords Tagging for SEO naturally */}
               <div className="text-[10px] text-gray-600 leading-relaxed font-mono">
-                Keywords: AI Automation • CRM Implementation • GoHighLevel Setup • AI Voice Receptionist • Business AI Solutions • Workflow Integration
+               AI Automation • CRM Implementation • GoHighLevel Setup • AI Voice Receptionist • Business AI Solutions • Workflow Integration
               </div>
             </div>
 
@@ -1591,7 +1591,7 @@ const data = await response.json();
                 </li>
                 <li className="flex items-center gap-2">
                   <Linkedin className="w-4 h-4 text-blue-500 shrink-0" />
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">
+                  <a href="https://www.linkedin.com/in/priyanka-sharma-7998ab149/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">
                     <span>LinkedIn</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
