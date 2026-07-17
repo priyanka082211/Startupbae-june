@@ -728,7 +728,7 @@ export default function App() {
                               <input 
                                 type="email"
                                 required
-                                placeholder="tpm.priyanka5@gmail.com"
+                                placeholder="hello@startupbae.com"
                                 value={formData.email}
                                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                                 className="w-full bg-gray-950/60 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500/80 transition-colors duration-200"
