@@ -89,11 +89,11 @@ export default function App() {
 
     try {
      const response = await fetch(
-  "https://script.google.com/macros/s/AKfycbyy-4rmBGyNndxRFILuTWFea8I3dQHxlQ8fXceJ7XoFjVXlkQRqx4NHBqlE5VjrVz2n/exec",
+  "https://script.google.com/macros/s/AKfycbxxyfHU0EnJ5hCBjVcgO1ZZmxlmxoiLlZtvFEpLX5HWlwDeQ8o1RT5FyDFzmnrTM67N/exec",
   {
     method: "POST",
     headers: {
-      "Content-Type": "text/plain;charset=utf-8"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       name: formData.name,
@@ -104,8 +104,10 @@ export default function App() {
     })
   }
 );
-      const data = await response.json();
-      setAuditResult(data);
+
+const data = await response.json();
+console.log(data);
+setAuditResult(data);
     } catch (err) {
       console.error(err);
       // Fallback
