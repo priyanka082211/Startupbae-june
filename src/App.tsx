@@ -1321,7 +1321,7 @@ export default function App() {
                         <input 
                           type="email"
                           required
-                          placeholder="tpm.priyanka5@gmail.com"
+                          placeholder="hello@startupbae.com"
                           value={formData.email}
                           onChange={(e) => setFormData({...formData, email: e.target.value})}
                           className="w-full bg-gray-950/80 border border-gray-800 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-blue-500/80 transition-colors duration-200"
@@ -1530,7 +1530,7 @@ export default function App() {
               <ul className="space-y-2 text-xs text-gray-400">
                 <li className="flex items-center gap-2">
                   <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
-                  <a href="mailto:tpm.priyanka5@gmail.com" className="hover:text-white transition-colors truncate">tpm.priyanka5@gmail.com</a>
+                  <a href="mailto:hello@startupbae.com" className="hover:text-white transition-colors truncate">hello@startupbae.com</a>
                 </li>
                 <li className="flex items-center gap-2">
                   <Linkedin className="w-4 h-4 text-blue-500 shrink-0" />
