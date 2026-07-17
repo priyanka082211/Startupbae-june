@@ -93,7 +93,7 @@ export default function App() {
     setAuditResult(null);
 
     try {
-      const response = await fetch("/api/submit-lead", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -173,7 +173,7 @@ export default function App() {
     setContactSuccess(null);
 
     try {
-      const response = await fetch("/api/submit-lead", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
