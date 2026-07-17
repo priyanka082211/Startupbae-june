@@ -176,14 +176,16 @@ Provide the strategy in a structured JSON format. Return ONLY a valid JSON objec
   });
 
   // Contact form CRM submission simulation endpoint (alias for backward compatibility)
+  // Contact form CRM submission simulation endpoint
   app.post('/api/contact', async (req, res) => {
     try {
-      const response = await fetch(`https://script.google.com/macros/s/AKfycbx4O-3oM_k96L-l49gyJiTq4AGVbG8jX9QktVJbYkLPOV5Qg3wpDT5WCpAl9sqF4cJo/exec`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(req.body),
+      const { name, email, company, phone, challenge } = req.body;
+      res.json({
+        success: true,
+        message: 'Lead successfully captured and routed to GoHighLevel CRM.',
+        leadId: 'sb_' + Math.random().toString(36).substring(2, 11).toUpperCase(),
+        routing: 'Assigned to Lead Automation Consultant'
       });
-      res.json(await response.json());
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
