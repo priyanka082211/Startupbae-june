@@ -87,7 +87,7 @@ export default function App() {
 
     try {
      const response = await fetch(
-  "https://script.google.com/macros/s/AKfycbxxyfHU0EnJ5hCBjVcgO1ZZmxlmxoiLlZtvFEpLX5HWlwDeQ8o1RT5FyDFzmnrTM67N/exec",
+  "https://script.google.com/macros/s/AKfycby92joVYP-QOEXIzNkHzApH0iyzD31oC800-hmI_QgyUo5trKGdEtsjZUYBRx5pd-JE/exec",
   {
     method: "POST",
     headers: {
@@ -142,7 +142,7 @@ setContactSuccess({
     setContactSuccess(null);
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbxxyfHU0EnJ5hCBjVcgO1ZZmxlmxoiLlZtvFEpLX5HWlwDeQ8o1RT5FyDFzmnrTM67N/exec",
+      const response = await fetch("https://script.google.com/macros/s/AKfycby92joVYP-QOEXIzNkHzApH0iyzD31oC800-hmI_QgyUo5trKGdEtsjZUYBRx5pd-JE/exec",
   {
     method: "POST",
     headers: {
