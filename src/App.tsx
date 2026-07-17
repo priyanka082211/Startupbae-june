@@ -781,12 +781,38 @@ export default function App() {
                               value={formData.challenge}
                               onChange={(e) => setFormData({...formData, challenge: e.target.value})}
                               className="w-full bg-gray-950/60 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500/80 focus:ring-1 focus:ring-blue-500/50 transition-colors duration-200"
-                            >
-                              <option value="Missed phone calls & no call follow-up">Missed phone calls & no voicemail follow-up</option>
-                              <option value="Slow lead response (takes hours or days)">Slow speed-to-lead follow-up (takes hours or days)</option>
-                              <option value="Leads lost or forgotten in spreadsheets">Leads forgotten in sheets/emails (no CRM)</option>
-                              <option value="Hours spent manually drafting emails/reminders">Too many hours spent on manual scheduling/reminders</option>
-                              <option value="Disconnected software systems & data silos">Disconnected software platforms that don't sync</option>
+                            ><option value="Missed phone calls & no call follow-up">Missed phone calls & no voicemail follow-up</option>
+<option value="Slow lead response (takes hours or days)">Slow speed-to-lead follow-up (takes hours or days)</option>
+<option value="Leads lost or forgotten in spreadsheets">Leads forgotten in sheets/emails (no CRM)</option>
+<option value="Hours spent manually drafting emails/reminders">Too many hours spent on manual scheduling/reminders</option>
+<option value="Disconnected software systems & data silos">Disconnected software platforms that don't sync</option>
+<option value="Customers asking the same questions repeatedly">Customers asking the same questions repeatedly</option>
+<option value="Too many repetitive administrative tasks">Too many repetitive administrative tasks</option>
+<option value="Manual client onboarding">Manual client onboarding process</option>
+<option value="Manual employee onboarding">Manual employee onboarding process</option>
+<option value="No visibility into project status">No visibility into project status</option>
+<option value="Tasks falling through the cracks">Tasks falling through the cracks</option>
+<option value="Missed project deadlines due to poor tracking">Missed project deadlines due to poor tracking</option>
+<option value="Project updates scattered across multiple tools">Project updates scattered across email, WhatsApp & Slack</option>
+<option value="Too many meetings for project updates">Too many meetings just to get status updates</option>
+<option value="Manual client progress reporting">Manual client progress reporting</option>
+<option value="Approvals delayed due to manual processes">Approvals delayed because everything is manual</option>
+<option value="Manual task assignment and tracking">Manual task assignment and tracking</option>
+<option value="Customer support tickets piling up">Customer support tickets piling up</option>
+<option value="Sales team forgets to follow up">Sales team forgets to follow up with prospects</option>
+<option value="Manual data entry between systems">Manual data entry between multiple systems</option>
+<option value="No centralized customer information">No centralized customer or project information</option>
+<option value="Appointment scheduling takes too much time">Appointment scheduling takes too much time</option>
+<option value="High appointment no-show rate">High no-show rate for appointments</option>
+<option value="Poor communication between teams">Poor communication between internal teams</option>
+<option value="Employee requests handled manually">Employee requests handled manually</option>
+<option value="Document approvals are slow">Document approvals are slow</option>
+<option value="Manual invoice generation & payment follow-up">Manual invoice generation & payment follow-up</option>
+<option value="Manual proposal and contract creation">Manual proposal and contract creation</option>
+<option value="Inventory or order updates handled manually">Inventory or order updates handled manually</option>
+<option value="Recruitment and interview scheduling is time-consuming">Recruitment and interview scheduling is time-consuming</option>
+<option value="Need an AI automation audit">Need an AI automation audit (Not sure where to start)</option>
+<option value="Other">Other</option>
                             </select>
                           </div>
 
