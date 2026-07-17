@@ -1,4 +1,9 @@
-import React, { useState, useEffect, FormEvent } from 'react';
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import React, { useState, useEffect } from 'react';
 import { 
   PhoneMissed, 
   Hourglass, 
@@ -37,21 +42,23 @@ import {
   ExternalLink,
   ChevronRight
 } from 'lucide-react';
-import { ViewType, AuditRecommendation } from './types';
+import { ViewType } from './types';
 import { PROBLEMS, SOLUTIONS, HOW_IT_WORKS, BENEFITS, CASE_STUDIES, SERVICES, INDUSTRIES } from './data';
 
 export default function App() {
   const [currentView, setCurrentView] = useState<ViewType>('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
-  // Lead / Audit Form State
-  body: JSON.stringify({
-  name: formData.name,
-  email: formData.email,
-  company: formData.company,
-  phone: formData.phone,
-  challenge: formData.challenge
-})
+  // Single Unified Form State
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    industry: 'Healthcare',
+    currentTools: '',
+    challenge: 'Missed phone calls & no voicemail follow-up'
+  });
 
   const [loading, setLoading] = useState(false);
   const [auditResult, setAuditResult] = useState<any | null>(null);
@@ -86,32 +93,56 @@ export default function App() {
     setAuditResult(null);
 
     try {
-     const response = await fetch(
-  "https://script.google.com/macros/s/AKfycby92joVYP-QOEXIzNkHzApH0iyzD31oC800-hmI_QgyUo5trKGdEtsjZUYBRx5pd-JE/exec",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name: formData.name,
-      email: formData.email,
-      company: formData.company,
-      phone: formData.phone,
-      challenge: formData.challenge
-    })
-  }
-);
+      const response = await fetch("/api/submit-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          challenge: `${formData.challenge} | Industry: ${formData.industry} | Tools: ${formData.currentTools || 'None Specified'}`
+        })
+      });
 
-const data = await response.json();
-setContactSuccess({
-  success: true,
-  leadId: "SB_" + Math.random().toString(36).substring(2, 8).toUpperCase(),
-  routing: "Assigned to Lead Automation Specialist"
-});
- catch (err) {
+      const data = await response.json();
+
+      setAuditResult({
+        summary: `We detected significant conversion leaks in your current lead generation pipeline for ${formData.company || 'your business'} in the ${formData.industry} industry. By relying on manual processes for your bottleneck ("${formData.challenge}"), you are likely losing up to 40% of captured prospects to faster-responding competitors.`,
+        quickWins: [
+          {
+            title: "Instant Text Speed-to-Lead Response",
+            description: `Automatically trigger a personalized SMS within 10 seconds of a new inquiry to bypass "${formData.challenge}" completely.`,
+            hoursSaved: "5 hours/week",
+            impact: "More than doubles your prospect response rate."
+          },
+          {
+            title: "Voicemail Automation Trigger",
+            description: "Automatically text callers back immediately if you miss an incoming call, capturing their booking intent before they hang up.",
+            hoursSaved: "4 hours/week",
+            impact: "Maintains interest and books appointments on autopilot."
+          }
+        ],
+        longTermStrategy: "Integrate a centralized GoHighLevel CRM and install a 24/7 AI Voice Receptionist to qualification-screen callers and schedule meetings without manual front-desk overhead.",
+        estimatedMetrics: {
+          hoursSavedPerWeek: "12-15 hours/week",
+          responseTimeImprovement: "From hours down to sub-10 seconds",
+          estimatedConversionUplift: "+30% more booked appointments"
+        },
+        recommendedStack: ["GoHighLevel CRM", "Vapi AI Voice", "Make.com workflow automation"]
+      });
+
+      setContactSuccess({
+        success: true,
+        leadId: data.leadId || ("SB_" + Math.random().toString(36).substring(2, 8).toUpperCase()),
+        routing: data.routing || "Assigned to Lead Automation Specialist",
+        message: data.message || "Lead captured successfully!"
+      });
+    } catch (err) {
       console.error(err);
-      // Fallback
+      // Fallback in case of endpoint error
       setAuditResult({
         summary: "We detected significant conversion leaks in your current lead generation pipeline. By responding manually, you are likely letting up to 40% of captured prospects go to competitors.",
         quickWins: [
@@ -142,22 +173,26 @@ setContactSuccess({
     setContactSuccess(null);
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycby92joVYP-QOEXIzNkHzApH0iyzD31oC800-hmI_QgyUo5trKGdEtsjZUYBRx5pd-JE/exec",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "text/plain;charset=utf-8"
-    },
-    body: JSON.stringify({
-      name: contactForm.name,
-      email: contactForm.email,
-      company: contactForm.company,
-      phone: contactForm.phone,
-      challenge: contactForm.challenge
-    })
-  });
+      const response = await fetch("/api/submit-lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          challenge: `${formData.challenge} | Industry: ${formData.industry}`
+        })
+      });
       const data = await response.json();
-      setContactSuccess(data);
+      setContactSuccess({
+        success: true,
+        leadId: data.leadId || ("SB_" + Math.random().toString(36).substring(2, 8).toUpperCase()),
+        routing: data.routing || "Assigned to Lead Automation Specialist",
+        message: data.message || "Lead successfully recorded in Google Sheet!"
+      });
       // Reset form on success
       setFormData({
         name: '',
@@ -166,7 +201,7 @@ setContactSuccess({
         phone: '',
         industry: 'Healthcare',
         currentTools: '',
-        challenge: 'Missed calls & slow follow-up'
+        challenge: 'Missed phone calls & no voicemail follow-up'
       });
     } catch (err) {
       console.error(err);
@@ -252,7 +287,7 @@ setContactSuccess({
   };
 
   return (
-    <div className="min-h-screen bg-[#030712] text-gray-100 font-sans selection:bg-blue-600 selection:text-white relative">
+    <div className="min-h-screen bg-[#030712] text-gray-100 font-sans selection:bg-blue-600 selection:text-white relative overflow-x-hidden">
       
       {/* Background glow effects - Styled Premium SaaS Look */}
       <div className="glow-orb w-[500px] h-[500px] bg-blue-900 top-[-100px] left-[-100px]" />
@@ -1060,7 +1095,7 @@ setContactSuccess({
                   <div className="space-y-6">
                     <div className="flex items-center gap-4">
                       <div className="w-16 h-16 rounded-2xl bg-gray-950 flex items-center justify-center border border-gray-800 group-hover:border-blue-500/30 transition-all duration-300">
-                        {getServiceIcon(service.id === 'ai-receptionist' ? 'Bot' : service.id === 'ai-voice-agents' ? 'PhoneCall' : service.id === 'crm-implementation' ? 'Database' : service.id === 'lead-automation' ? 'Zap' : service.id === 'workflow-automation' ? 'Workflow' : 'Laptop')}
+                        {getServiceIcon(service.id === 'ai-voice-agents' ? 'PhoneCall' : service.id === 'crm-implementation' ? 'Database' : service.id === 'lead-automation' ? 'Zap' : service.id === 'workflow-automation' ? 'Workflow' : 'Laptop')}
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-white group-hover:text-blue-300 transition-colors duration-200">{service.title}</h3>
@@ -1372,7 +1407,7 @@ setContactSuccess({
                       {contactLoading ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin" />
-                          <span>Routing Lead to GoHighLevel...</span>
+                          <span>Routing Lead to Google Sheets...</span>
                         </>
                       ) : (
                         <>
@@ -1399,8 +1434,8 @@ setContactSuccess({
                       </p>
                     </div>
 
-                    {/* Simulating GHL Sync receipt */}
-                    <div className="bg-gray-950 border border-gray-850 p-4 rounded-xl text-left font-mono text-[11px] space-y-2">
+                    {/* Simulating CRM Sync receipt */}
+                    <div className="bg-gray-950 border border-gray-800 p-4 rounded-xl text-left font-mono text-[11px] space-y-2">
                       <div className="flex justify-between border-b border-gray-900 pb-1.5 text-gray-500">
                         <span>CRM LOG ROUTING</span>
                         <span className="text-emerald-400">✔ SYNCED</span>
