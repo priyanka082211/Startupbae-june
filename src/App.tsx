@@ -45,15 +45,13 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // Lead / Audit Form State
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    industry: 'Healthcare',
-    currentTools: '',
-    challenge: 'Missed calls & slow follow-up'
-  });
+  body: JSON.stringify({
+  name: formData.name,
+  email: formData.email,
+  company: formData.company,
+  phone: formData.phone,
+  challenge: formData.challenge
+})
 
   const [loading, setLoading] = useState(false);
   const [auditResult, setAuditResult] = useState<any | null>(null);
@@ -106,9 +104,12 @@ export default function App() {
 );
 
 const data = await response.json();
-console.log(data);
-setAuditResult(data);
-    } catch (err) {
+setContactSuccess({
+  success: true,
+  leadId: "SB_" + Math.random().toString(36).substring(2, 8).toUpperCase(),
+  routing: "Assigned to Lead Automation Specialist"
+});
+ catch (err) {
       console.error(err);
       // Fallback
       setAuditResult({
@@ -141,7 +142,7 @@ setAuditResult(data);
     setContactSuccess(null);
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbyy-4rmBGyNndxRFILuTWFea8I3dQHxlQ8fXceJ7XoFjVXlkQRqx4NHBqlE5VjrVz2n/exec",
+      const response = await fetch("https://script.google.com/macros/s/AKfycbxxyfHU0EnJ5hCBjVcgO1ZZmxlmxoiLlZtvFEpLX5HWlwDeQ8o1RT5FyDFzmnrTM67N/exec",
   {
     method: "POST",
     headers: {
