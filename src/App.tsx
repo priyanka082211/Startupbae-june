@@ -88,23 +88,18 @@ export default function App() {
     setAuditResult(null);
 
     try {
-const response = await fetch(
-  "https://script.google.com/macros/s/AKfycbxTIoG9yczBClecwiR0mo80dsjs8oknu5nmoV1ZYfdvkfePWHpAn1IKltxvztCFTeRZ/exec",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "text/plain;charset=utf-8"
-    },
-    body: JSON.stringify({
-      name: formData.name,
-      email: formData.email,
-      company: formData.company,
-      industry: formData.industry,
-      tools: formData.currentTools,
-      bottleneck: formData.challenge
-    })
-  }
-);
+      const response = await fetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          industry: formData.industry,
+          currentTools: formData.currentTools,
+          challenges: formData.challenge
+        })
+      });
       const data = await response.json();
       setAuditResult(data);
     } catch (err) {
@@ -143,14 +138,7 @@ const response = await fetch(
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-  name: formData.name,
-  email: formData.email,
-  company: formData.company,
-  industry: formData.industry,
-  tools: formData.currentTools,
-  bottleneck: formData.challenge
-})
+        body: JSON.stringify(formData)
       });
       const data = await response.json();
       setContactSuccess(data);
@@ -740,7 +728,7 @@ const response = await fetch(
                               <input 
                                 type="email"
                                 required
-                                placeholder="hello@startupbae.com"
+                                placeholder="tpm.priyanka5@gmail.com"
                                 value={formData.email}
                                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                                 className="w-full bg-gray-950/60 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500/80 transition-colors duration-200"
@@ -793,38 +781,12 @@ const response = await fetch(
                               value={formData.challenge}
                               onChange={(e) => setFormData({...formData, challenge: e.target.value})}
                               className="w-full bg-gray-950/60 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500/80 focus:ring-1 focus:ring-blue-500/50 transition-colors duration-200"
-                            ><option value="Missed phone calls & no call follow-up">Missed phone calls & no voicemail follow-up</option>
-<option value="Slow lead response (takes hours or days)">Slow speed-to-lead follow-up (takes hours or days)</option>
-<option value="Leads lost or forgotten in spreadsheets">Leads forgotten in sheets/emails (no CRM)</option>
-<option value="Hours spent manually drafting emails/reminders">Too many hours spent on manual scheduling/reminders</option>
-<option value="Disconnected software systems & data silos">Disconnected software platforms that don't sync</option>
-<option value="Customers asking the same questions repeatedly">Customers asking the same questions repeatedly</option>
-<option value="Too many repetitive administrative tasks">Too many repetitive administrative tasks</option>
-<option value="Manual client onboarding">Manual client onboarding process</option>
-<option value="Manual employee onboarding">Manual employee onboarding process</option>
-<option value="No visibility into project status">No visibility into project status</option>
-<option value="Tasks falling through the cracks">Tasks falling through the cracks</option>
-<option value="Missed project deadlines due to poor tracking">Missed project deadlines due to poor tracking</option>
-<option value="Project updates scattered across multiple tools">Project updates scattered across email, WhatsApp & Slack</option>
-<option value="Too many meetings for project updates">Too many meetings just to get status updates</option>
-<option value="Manual client progress reporting">Manual client progress reporting</option>
-<option value="Approvals delayed due to manual processes">Approvals delayed because everything is manual</option>
-<option value="Manual task assignment and tracking">Manual task assignment and tracking</option>
-<option value="Customer support tickets piling up">Customer support tickets piling up</option>
-<option value="Sales team forgets to follow up">Sales team forgets to follow up with prospects</option>
-<option value="Manual data entry between systems">Manual data entry between multiple systems</option>
-<option value="No centralized customer information">No centralized customer or project information</option>
-<option value="Appointment scheduling takes too much time">Appointment scheduling takes too much time</option>
-<option value="High appointment no-show rate">High no-show rate for appointments</option>
-<option value="Poor communication between teams">Poor communication between internal teams</option>
-<option value="Employee requests handled manually">Employee requests handled manually</option>
-<option value="Document approvals are slow">Document approvals are slow</option>
-<option value="Manual invoice generation & payment follow-up">Manual invoice generation & payment follow-up</option>
-<option value="Manual proposal and contract creation">Manual proposal and contract creation</option>
-<option value="Inventory or order updates handled manually">Inventory or order updates handled manually</option>
-<option value="Recruitment and interview scheduling is time-consuming">Recruitment and interview scheduling is time-consuming</option>
-<option value="Need an AI automation audit">Need an AI automation audit (Not sure where to start)</option>
-<option value="Other">Other</option>
+                            >
+                              <option value="Missed phone calls & no call follow-up">Missed phone calls & no voicemail follow-up</option>
+                              <option value="Slow lead response (takes hours or days)">Slow speed-to-lead follow-up (takes hours or days)</option>
+                              <option value="Leads lost or forgotten in spreadsheets">Leads forgotten in sheets/emails (no CRM)</option>
+                              <option value="Hours spent manually drafting emails/reminders">Too many hours spent on manual scheduling/reminders</option>
+                              <option value="Disconnected software systems & data silos">Disconnected software platforms that don't sync</option>
                             </select>
                           </div>
 
@@ -1333,7 +1295,7 @@ const response = await fetch(
                         <input 
                           type="email"
                           required
-                          placeholder="hello@startupbae.com"
+                          placeholder="tpm.priyanka5@gmail.com"
                           value={formData.email}
                           onChange={(e) => setFormData({...formData, email: e.target.value})}
                           className="w-full bg-gray-950/80 border border-gray-800 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-blue-500/80 transition-colors duration-200"
@@ -1542,7 +1504,7 @@ const response = await fetch(
               <ul className="space-y-2 text-xs text-gray-400">
                 <li className="flex items-center gap-2">
                   <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
-                  <a href="mailto:hello@startupbae.com" className="hover:text-white transition-colors truncate">hello@startupbae.com</a>
+                  <a href="mailto:tpm.priyanka5@gmail.com" className="hover:text-white transition-colors truncate">tpm.priyanka5@gmail.com</a>
                 </li>
                 <li className="flex items-center gap-2">
                   <Linkedin className="w-4 h-4 text-blue-500 shrink-0" />
