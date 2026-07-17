@@ -123,13 +123,14 @@ Provide the strategy in a structured JSON format. Return ONLY a valid JSON objec
   // Contact form CRM submission simulation endpoint
   app.post('/api/contact', async (req, res) => {
   try {
+
     const lead = {
-      leadId: 'SB_' + Math.random().toString(36).substring(2,8).toUpperCase(),
+      leadId: "SB_" + Math.random().toString(36).substring(2,8).toUpperCase(),
       timestamp: new Date().toISOString(),
       ...req.body
     };
 
-    const response = await fetch(
+    const googleResponse = await fetch(
       "https://script.google.com/macros/s/AKfycbzWGgA9TnbDIv-9n5XF8TR3LmBs61N7bWs9Bvf2BIk/exec",
       {
         method: "POST",
@@ -140,17 +141,18 @@ Provide the strategy in a structured JSON format. Return ONLY a valid JSON objec
       }
     );
 
-    const result = await response.json();
+    const googleResult = await googleResponse.json();
 
     res.json({
       success: true,
       ...lead,
-      google: result
+      googleResult
     });
 
-  } catch (err:any) {
+  } catch (error: any) {
+    console.error(error);
     res.status(500).json({
-      error: err.message
+      error: error.message
     });
   }
 });
