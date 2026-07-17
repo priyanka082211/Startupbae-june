@@ -178,38 +178,31 @@ const data = await response.json();
     setContactSuccess(null);
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          phone: formData.phone,
-          challenge: `${formData.challenge} | Industry: ${formData.industry}`
-        })
-      });
-      const data = await response.json();
-      setContactSuccess({
-        success: true,
-        leadId: data.leadId || ("SB_" + Math.random().toString(36).substring(2, 8).toUpperCase()),
-        routing: data.routing || "Assigned to Lead Automation Specialist",
-        message: data.message || "Lead successfully recorded in Google Sheet!"
-      });
-      // Reset form on success
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        industry: 'Healthcare',
-        currentTools: '',
-        challenge: 'Missed phone calls & no voicemail follow-up'
-      });
-    } catch (err) {
-      console.error(err);
+  const response = await fetch(
+    "https://script.google.com/macros/s/AKfycbzWGgA9TnbDIv-9n5XF8TR3LmBs61N7bWs9Bvf2BIk/exec",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        leadId: "SB_" + Date.now(),
+        timestamp: new Date().toISOString(),
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        phone: formData.phone,
+        challenge: `${formData.challenge} | Industry: ${formData.industry}`,
+      }),
+    }
+  );
+
+  const result = await response.json();
+  console.log(result);
+
+} catch (error) {
+  console.error(error);
+}
       setContactSuccess({
         success: true,
         message: 'Lead captured successfully.',
