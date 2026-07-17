@@ -93,21 +93,26 @@ export default function App() {
     setAuditResult(null);
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          phone: formData.phone,
-          challenge: `${formData.challenge} | Industry: ${formData.industry} | Tools: ${formData.currentTools || 'None Specified'}`
-        })
-      });
+      const response = await fetch(
+  "https://script.google.com/macros/s/AKfycbzWGgA9TnbDIv-9n5XF8TR3LmBs61N7bWs9Bvf2BIk/exec",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      leadId: "SB_" + Date.now(),
+      timestamp: new Date().toISOString(),
+      name: formData.name,
+      email: formData.email,
+      company: formData.company,
+      phone: formData.phone,
+      challenge: formData.challenge,
+    }),
+  }
+);
 
-      const data = await response.json();
+const data = await response.json();
 
       setAuditResult({
         summary: `We detected significant conversion leaks in your current lead generation pipeline for ${formData.company || 'your business'} in the ${formData.industry} industry. By relying on manual processes for your bottleneck ("${formData.challenge}"), you are likely losing up to 40% of captured prospects to faster-responding competitors.`,
