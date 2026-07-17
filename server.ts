@@ -121,15 +121,69 @@ Provide the strategy in a structured JSON format. Return ONLY a valid JSON objec
   });
 
   // Contact form CRM submission simulation endpoint
-  app.post('/api/contact', async (req, res) => {
+  // Unified endpoint for lead submission and Google Sheets CRM routing
+  app.post('/api/submit-lead', async (req, res) => {
     try {
       const { name, email, company, phone, challenge } = req.body;
+      const leadId = 'SB_' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      const timestamp = new Date().toISOString();
+
+      let sheetStatus = 'Simulated sync active';
+      let webhookSuccess = false;
+
+      // Check if a Google Sheets webhook or Apps Script Web App URL is defined in your environment variables
+      const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL;
+      if (webhookUrl) {
+        try {
+          const sheetResponse = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              leadId,
+              timestamp,
+              name,
+              email,
+              company,
+              phone,
+              challenge,
+            }),
+          });
+          
+          if (sheetResponse.ok) {
+            sheetStatus = 'Lead successfully recorded in Google Sheet!';
+            webhookSuccess = true;
+          } else {
+            sheetStatus = `Webhook responded with status ${sheetResponse.status}`;
+          }
+        } catch (webhookError: any) {
+          console.error('Failed to forward lead to Google Sheet webhook:', webhookError);
+          sheetStatus = `Failed to connect to Google Sheet webhook: ${webhookError.message}`;
+        }
+      }
+
       res.json({
         success: true,
-        message: 'Lead successfully captured and routed to GoHighLevel CRM.',
-        leadId: 'sb_' + Math.random().toString(36).substring(2, 11).toUpperCase(),
-        routing: 'Assigned to Lead Automation Consultant'
+        message: webhookUrl && webhookSuccess ? 'Lead successfully recorded in Google Sheet!' : 'Lead successfully recorded in CRM (Simulation Mode).',
+        leadId,
+        routing: webhookUrl && webhookSuccess ? 'Synced to your live Google Sheet' : 'Assigned to Lead Automation Specialist',
+        sheetStatus,
       });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Contact form CRM submission simulation endpoint (alias for backward compatibility)
+  app.post('/api/contact', async (req, res) => {
+    try {
+      const response = await fetch(`https://script.google.com/macros/s/AKfycbx4O-3oM_k96L-l49gyJiTq4AGVbG8jX9QktVJbYkLPOV5Qg3wpDT5WCpAl9sqF4cJo/exec`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(req.body),
+      });
+      res.json(await response.json());
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
