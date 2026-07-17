@@ -1,0 +1,6 @@
+{
+  "name": "StartupBae",
+  "description": "Premium AI and workflow automation partner helping service businesses automate sales, support, and operations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
