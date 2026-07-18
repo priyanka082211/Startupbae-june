@@ -94,7 +94,7 @@ setAuditResult(null);
 
 try {
 const response = await fetch(
-"https://script.google.com/macros/s/AKfycbzWGgA9TnbDIv-9n5XF8TR3LmBs61N7bWs9Bvf2BIk/exec",
+"https://script.google.com/macros/s/AKfycbzOHgtnsQABVB2E3FBYEBaZBCWRNZfSke0zq8a5n9vBuF_0iBQuCWuvdXO2psjk2k0n9A/exec",
 {
 method: "POST",
 headers: {
@@ -179,7 +179,7 @@ const handleContactSubmit = async (e: React.FormEvent) => {
 
   try {
     const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbzWGgA9TnbDIv-9n5XF8TR3LmBs61N7bWs9Bvf2BIk/exec",
+      "https://script.google.com/macros/s/AKfycbzOHgtnsQABVB2E3FBYEBaZBCWRNZfSke0zq8a5n9vBuF_0iBQuCWuvdXO2psjk2k0n9A/exec",
       {
         method: "POST",
         headers: {
