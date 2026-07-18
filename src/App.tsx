@@ -1612,5 +1612,5 @@ const data = await response.json();
       </footer>
 
     </div>
-  );
+  )
 }
