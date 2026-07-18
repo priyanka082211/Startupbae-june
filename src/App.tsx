@@ -1616,3 +1616,4 @@ className="text-gray-400 hover:text-white transition-colors"
 </div>
 );
 }
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a54bb22d166a8719fedbf22"></script>
