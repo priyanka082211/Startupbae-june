@@ -178,23 +178,24 @@ const data = await response.json();
     setContactSuccess(null);
 
     try {
-  const response = await fetch(
-    "https://script.google.com/macros/s/AKfycbzWGgA9TnbDIv-9n5XF8TR3LmBs61N7bWs9Bvf2BIk/exec",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        leadId: "SB_" + Date.now(),
-        timestamp: new Date().toISOString(),
-        name: formData.name,
-        email: formData.email,
-        company: formData.company,
-        phone: formData.phone,
-        challenge: `${formData.challenge} | Industry: ${formData.industry}`,
-      }),
-    })
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbzWGgA9TnbDIv-9n5XF8TR3LmBs61N7bWs9Bvf2BIk/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            leadId: "SB_" + Date.now(),
+            timestamp: new Date().toISOString(),
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            phone: formData.phone,
+            challenge: `${formData.challenge} | Industry: ${formData.industry}`,
+          }),
+        })
+      
         setContactSuccess({
         success: true,
         message: 'Lead captured successfully.',
@@ -202,23 +203,22 @@ const data = await response.json();
         routing: 'Assigned to Lead Automation Specialist'
       });
 
-  const result = await response.json();
-  console.log(result);
+      const result = await response.json();
+      console.log(result);
 
-} catch (error) {
-  console.error(error);
+    } catch (error) {
+      console.error(error);
       setContactSuccess({
-    success: false,
-    message: 'Failed to submit the form.',
-    leadId: '',
-    routing: ''
-  });
-}
+      success: false,
+      message: 'Failed to submit the form.',
+      leadId: '',
+      routing: ''
+    });
+  }
       
-    } finally {
+  finally {
       setContactLoading(false);
     }
-  };
 
   const getProblemIcon = (iconName: string) => {
     switch (iconName) {
