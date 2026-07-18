@@ -195,20 +195,26 @@ const data = await response.json();
         challenge: `${formData.challenge} | Industry: ${formData.industry}`,
       }),
     }
-  );
+setContactSuccess({
+        success: true,
+        message: 'Lead captured successfully.',
+        leadId: 'SB_' + Math.random().toString(36).substring(2, 8).toUpperCase(),
+        routing: 'Assigned to Lead Automation Specialist'
+      });
 
   const result = await response.json();
   console.log(result);
 
 } catch (error) {
   console.error(error);
-}
       setContactSuccess({
-        success: true,
-        message: 'Lead captured successfully.',
-        leadId: 'SB_' + Math.random().toString(36).substring(2, 8).toUpperCase(),
-        routing: 'Assigned to Lead Automation Specialist'
-      });
+    success: false,
+    message: 'Failed to submit the form.',
+    leadId: '',
+    routing: ''
+  });
+}
+      
     } finally {
       setContactLoading(false);
     }
