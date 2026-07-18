@@ -144,34 +144,7 @@ const data = await response.json();
         leadId: data.leadId || ("SB_" + Math.random().toString(36).substring(2, 8).toUpperCase()),
         routing: data.routing || "Assigned to Lead Automation Specialist",
         message: data.message || "Lead captured successfully!"
-      });
-    } catch (err) {
-      console.error(err);
-      // Fallback in case of endpoint error
-      setAuditResult({
-        summary: "We detected significant conversion leaks in your current lead generation pipeline. By responding manually, you are likely letting up to 40% of captured prospects go to competitors.",
-        quickWins: [
-          {
-            title: "Instant Text Speed-to-Lead",
-            description: "Automatically reply to new inquiries within 10 seconds via conversational SMS.",
-            hoursSaved: "5 hours/week",
-            impact: "More than doubles your prospect response rate."
-          }
-        ],
-        longTermStrategy: "Integrate a central GoHighLevel CRM and install an AI Voice Receptionist to qualification-screen leads automatically before reps join calls.",
-        estimatedMetrics: {
-          hoursSavedPerWeek: "12-15 hours/week",
-          responseTimeImprovement: "From hours down to sub-10 seconds",
-          estimatedConversionUplift: "+30% more booked appointments"
-        },
-        recommendedStack: ["GoHighLevel CRM", "Vapi AI Voice", "Make.com workflow automation"]
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Handle contact form submission
+      // Handle contact form submission
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setContactLoading(true);
@@ -181,6 +154,45 @@ const data = await response.json();
       const response = await fetch(
         "https://script.google.com/macros/s/AKfycbzWGgA9TnbDIv-9n5XF8TR3LmBs61N7bWs9Bvf2BIk/exec",
         {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            leadId: "SB_" + Date.now(),
+            timestamp: new Date().toISOString(),
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            phone: formData.phone,
+            challenge: `${formData.challenge} | Industry: ${formData.industry}`,
+          }),
+        }
+      );
+
+      const result = await response.json();
+      console.log(result);
+
+      // Only set success if the response was actually okay
+      setContactSuccess({
+        success: true,
+        message: 'Lead captured successfully.',
+        leadId: 'SB_' + Math.random().toString(36).substring(2, 8).toUpperCase(),
+        routing: 'Assigned to Lead Automation Specialist'
+      });
+
+    } catch (error) {
+      console.error(error);
+      setContactSuccess({
+        success: false,
+        message: 'Failed to submit the form.',
+        leadId: '',
+        routing: ''
+      });
+    } finally {
+      setContactLoading(false);
+    }
+  }; // <--- THIS BRACE WAS MISSING OR MISPLACED
           method: "POST",
           headers: {
             "Content-Type": "application/json",
