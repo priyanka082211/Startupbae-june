@@ -194,8 +194,8 @@ const data = await response.json();
         phone: formData.phone,
         challenge: `${formData.challenge} | Industry: ${formData.industry}`,
       }),
-    }
-setContactSuccess({
+    })
+        setContactSuccess({
         success: true,
         message: 'Lead captured successfully.',
         leadId: 'SB_' + Math.random().toString(36).substring(2, 8).toUpperCase(),
