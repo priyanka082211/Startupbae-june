@@ -173,58 +173,53 @@ setLoading(false);
 
 // Handle contact form submission
 const handleContactSubmit = async (e: React.FormEvent) => {
-e.preventDefault();
-setContactLoading(true);
-setContactSuccess(null);
+  e.preventDefault();
+  setContactLoading(true);
+  setContactSuccess(null);
 
-try {
-const response = await fetch(
-"https://script.google.com/macros/s/AKfycbzWGgA9TnbDIv-9n5XF8TR3LmBs61N7bWs9Bvf2BIk/exec",
-{
-method: "POST",
-headers: {
-"Content-Type": "application/json",
-},
-body: JSON.stringify({
-leadId: "SB_" + Date.now(),
-timestamp: new Date().toISOString(),
-name: formData.name,
-email: formData.email,
-company: formData.company,
-phone: formData.phone,
-challenge: `${formData.challenge} | Industry: ${formData.industry}`,
-}),
-}
-  );
-setContactSuccess({
-        success: true,
-        message: 'Lead captured successfully.',
-        leadId: 'SB_' + Math.random().toString(36).substring(2, 8).toUpperCase(),
-        routing: 'Assigned to Lead Automation Specialist'
-      });
+  try {
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbzWGgA9TnbDIv-9n5XF8TR3LmBs61N7bWs9Bvf2BIk/exec",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          leadId: "SB_" + Date.now(),
+          timestamp: new Date().toISOString(),
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          challenge: `${formData.challenge} | Industry: ${formData.industry}`,
+        }),
+      }
+    );
 
-const result = await response.json();
-console.log(result);
+    const result = await response.json();
+    console.log(result);
 
-} catch (error) {
-console.error(error);
-}
-setContactSuccess({
-        success: true,
-        message: 'Lead captured successfully.',
-        leadId: 'SB_' + Math.random().toString(36).substring(2, 8).toUpperCase(),
-        routing: 'Assigned to Lead Automation Specialist'
-      });
-    success: false,
-    message: 'Failed to submit the form.',
-    leadId: '',
-    routing: ''
-  });
-}
-      
-} finally {
-setContactLoading(false);
-}
+    setContactSuccess({
+      success: true,
+      message: "Lead captured successfully.",
+      leadId: result.leadId || ("SB_" + Date.now()),
+      routing: "Assigned to Lead Automation Specialist",
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    setContactSuccess({
+      success: false,
+      message: "Failed to submit the form.",
+      leadId: "",
+      routing: "",
+    });
+
+  } finally {
+    setContactLoading(false);
+  }
 };
 
 const getProblemIcon = (iconName: string) => {
