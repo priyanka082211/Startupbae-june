@@ -1,13 +1,1146 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StartupBae</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StartupBae AI — Run Your Entire Business with AI</title>
+    <meta name="description" content="StartupBae AI combines CRM, AI employees, marketing automation, appointment booking, and workflows into one intelligent platform.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            900: '#4c1d95',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -5px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 0 40px -10px rgba(124, 58, 237, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 text-2xl font-extrabold tracking-tight">
+                <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                    <i data-lucide="zap" class="w-5 h-5"></i>
+                </div>
+                <span>Startup<span class="gradient-text">Bae AI</span></span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="#home" class="hover:text-brand-600 transition">Home</a>
+                <a href="#platform" class="hover:text-brand-600 transition">Platform</a>
+                <a href="#solutions" class="hover:text-brand-600 transition">Solutions</a>
+                <a href="#pricing" class="hover:text-brand-600 transition">Pricing</a>
+                <a href="#resources" class="hover:text-brand-600 transition">Resources</a>
+                <a href="#about" class="hover:text-brand-600 transition">About</a>
+                <a href="#contact" class="hover:text-brand-600 transition">Contact</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#contact" class="text-sm font-semibold text-slate-700 hover:text-brand-600 px-4 py-2 transition">Sign In</a>
+                <a href="#contact" class="gradient-bg text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md shadow-brand-500/20 hover:opacity-95 transition transform hover:-translate-y-0.5">
+                    Book a Demo
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden p-2 text-slate-600 focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-6 py-4 space-y-3">
+            <a href="#home" class="block text-slate-600 font-medium py-1">Home</a>
+            <a href="#platform" class="block text-slate-600 font-medium py-1">Platform</a>
+            <a href="#solutions" class="block text-slate-600 font-medium py-1">Solutions</a>
+            <a href="#pricing" class="block text-slate-600 font-medium py-1">Pricing</a>
+            <a href="#resources" class="block text-slate-600 font-medium py-1">Resources</a>
+            <a href="#about" class="block text-slate-600 font-medium py-1">About</a>
+            <a href="#contact" class="block text-slate-600 font-medium py-1">Contact</a>
+            <div class="pt-4 flex flex-col gap-2">
+                <a href="#contact" class="w-full text-center py-2.5 rounded-xl border border-slate-200 text-slate-700 font-semibold">Sign In</a>
+                <a href="#contact" class="w-full text-center py-2.5 rounded-xl gradient-bg text-white font-semibold shadow-md">Book a Demo</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-20 pb-24 overflow-hidden flex flex-col items-center">
+        <div class="hero-glow top-10 left-1/2 -translate-x-1/2 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-xs font-semibold mb-6 animate-pulse">
+                <span class="w-2 h-2 rounded-full bg-brand-600"></span>
+                Meet the Next-Gen AI Business Operating System
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 tracking-tight max-w-4xl mx-auto leading-tight">
+                Run Your Entire Business <br class="hidden sm:inline">with <span class="gradient-text">AI</span>
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
+                StartupBae AI combines CRM, AI employees, marketing automation, appointment booking, customer communication, websites, funnels, and business workflows into one intelligent platform.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#contact" class="w-full sm:w-auto gradient-bg text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-brand-500/25 hover:opacity-95 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    Book a Demo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+                <a href="#platform" class="w-full sm:w-auto bg-white text-slate-700 font-semibold px-8 py-4 rounded-xl border border-slate-200 hover:bg-slate-50 transition flex items-center justify-center gap-2">
+                    <i data-lucide="play-circle" class="w-5 h-5 text-brand-600"></i> Watch Demo
+                </a>
+            </div>
+            
+            <p class="mt-4 text-xs text-slate-400">No credit card required • Instant setup • 14-day free trial</p>
+
+            <!-- Dashboard Mockup Preview -->
+            <div class="mt-16 relative max-w-5xl mx-auto rounded-2xl border border-slate-200/80 bg-slate-50/50 p-2 sm:p-4 shadow-2xl shadow-slate-200">
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden text-left shadow-soft">
+                    <!-- Top Window Bar -->
+                    <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-rose-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+                            <span class="ml-4 text-xs font-medium text-slate-400">app.startupbae.ai/dashboard</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="inline-flex items-center gap-1.5 text-xs bg-emerald-50 text-emerald-600 px-2.5 py-1 rounded-full font-medium">
+                                <i data-lucide="activity" class="w-3 h-3"></i> AI System Active
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Dashboard Body Mockup -->
+                    <div class="grid grid-cols-1 lg:grid-cols-4 min-h-[420px]">
+                        <!-- Sidebar -->
+                        <div class="hidden lg:block bg-slate-900 text-slate-300 p-4 space-y-2">
+                            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider px-3 mb-2">Workspace</div>
+                            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-brand-600 text-white text-sm font-medium"><i data-lucide="layout-dashboard" class="w-4 h-4"></i> Overview</a>
+                            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800 text-sm font-medium"><i data-lucide="kanban" class="w-4 h-4"></i> CRM Pipeline</a>
+                            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800 text-sm font-medium"><i data-lucide="bot" class="w-4 h-4"></i> AI Employees</a>
+                            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800 text-sm font-medium"><i data-lucide="calendar" class="w-4 h-4"></i> Appointments</a>
+                            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800 text-sm font-medium"><i data-lucide="git-merge" class="w-4 h-4"></i> Automation</a>
+                            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800 text-sm font-medium"><i data-lucide="bar-chart-3" class="w-4 h-4"></i> Analytics</a>
+                        </div>
+
+                        <!-- Main Content Area -->
+                        <div class="lg:col-span-3 p-6 bg-slate-50/50 space-y-6">
+                            <!-- Stats Row -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                                    <div class="text-xs text-slate-500 font-medium">Total Revenue</div>
+                                    <div class="text-2xl font-bold text-slate-900 mt-1">$128,430</div>
+                                    <div class="text-xs text-emerald-600 font-semibold mt-1 flex items-center gap-1"><i data-lucide="trending-up" class="w-3 h-3"></i> +14.2% this month</div>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                                    <div class="text-xs text-slate-500 font-medium">Active Leads (CRM)</div>
+                                    <div class="text-2xl font-bold text-slate-900 mt-1">1,420</div>
+                                    <div class="text-xs text-emerald-600 font-semibold mt-1 flex items-center gap-1"><i data-lucide="trending-up" class="w-3 h-3"></i> +38 new today</div>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                                    <div class="text-xs text-slate-500 font-medium">AI Tasks Automated</div>
+                                    <div class="text-2xl font-bold text-slate-900 mt-1">8,924</div>
+                                    <div class="text-xs text-brand-600 font-semibold mt-1 flex items-center gap-1"><i data-lucide="zap" class="w-3 h-3"></i> 99.8% Success Rate</div>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Grid Mockup (Pipeline + AI Chat) -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Mini Pipeline -->
+                                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">Live Sales Pipeline</h4>
+                                        <span class="text-xs text-brand-600 font-semibold cursor-pointer">View All</span>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between text-xs">
+                                            <span class="font-medium text-slate-800">Apex Realty Consultation</span>
+                                            <span class="bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">$4,500</span>
+                                        </div>
+                                        <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between text-xs">
+                                            <span class="font-medium text-slate-800">Metro Dental Clinic Setup</span>
+                                            <span class="bg-brand-50 text-brand-700 px-2 py-0.5 rounded font-semibold">$12,000</span>
+                                        </div>
+                                        <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between text-xs">
+                                            <span class="font-medium text-slate-800">Elite Fitness Campaign</span>
+                                            <span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">$2,800</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- AI Assistant Log -->
+                                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">AI Assistant Activity</h4>
+                                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                                    </div>
+                                    <div class="space-y-2 text-xs">
+                                        <div class="p-2 rounded-lg bg-purple-50/60 text-slate-700">
+                                            <span class="font-semibold text-brand-700">AI Receptionist:</span> Answered incoming call, qualified lead & booked demo for tomorrow at 2 PM.
+                                        </div>
+                                        <div class="p-2 rounded-lg bg-slate-50 text-slate-700">
+                                            <span class="font-semibold text-slate-800">AI Follow-up:</span> Sent WhatsApp reminder to Sarah Jenkins. Confirmed appointment.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Why StartupBae (Problems vs Solutions) -->
+    <section class="py-24 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-3">The Old Way vs StartupBae AI</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Stop Struggling with Fragmented Tools & Lost Revenue
+                </h3>
+                <p class="mt-4 text-slate-600">Traditional business software creates administrative chaos. StartupBae AI unifies everything under a single intelligent system.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Problem 1 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-soft hover:shadow-glow transition group">
+                    <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center mb-6 font-bold">
+                        <i data-lucide="user-x" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-xs font-semibold text-rose-500 uppercase tracking-wider mb-1">Common Problem</div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-2">Losing Leads</h4>
+                    <p class="text-slate-600 text-sm mb-4">Leads slip through the cracks across missed social DMs, emails, and phone calls.</p>
+                    <div class="pt-4 border-t border-slate-100 flex items-start gap-2 text-xs font-medium text-emerald-600">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 shrink-0 mt-0.5"></i>
+                        <span><strong>StartupBae AI Solution:</strong> Centralized inbox capturing every lead instantly from all channels into one unified CRM pipeline.</span>
+                    </div>
+                </div>
+
+                <!-- Problem 2 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-soft hover:shadow-glow transition group">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center mb-6 font-bold">
+                        <i data-lucide="clock" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-xs font-semibold text-amber-500 uppercase tracking-wider mb-1">Common Problem</div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-2">Manual Follow-ups & Missed Calls</h4>
+                    <p class="text-slate-600 text-sm mb-4">Slow response times kill conversion rates. Staff are too overwhelmed to call back immediately.</p>
+                    <div class="pt-4 border-t border-slate-100 flex items-start gap-2 text-xs font-medium text-emerald-600">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 shrink-0 mt-0.5"></i>
+                        <span><strong>StartupBae AI Solution:</strong> AI voice and chat receptionists respond in under 3 seconds, 24/7, booking appointments automatically.</span>
+                    </div>
+                </div>
+
+                <!-- Problem 3 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-soft hover:shadow-glow transition group">
+                    <div class="w-12 h-12 rounded-xl bg-purple-50 text-brand-600 flex items-center justify-center mb-6 font-bold">
+                        <i data-lucide="layers" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-xs font-semibold text-brand-600 uppercase tracking-wider mb-1">Common Problem</div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-2">Too Many Disconnected Tools</h4>
+                    <p class="text-slate-600 text-sm mb-4">Paying for 10 different subscriptions that don't talk to each other leads to expensive tech overhead.</p>
+                    <div class="pt-4 border-t border-slate-100 flex items-start gap-2 text-xs font-medium text-emerald-600">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 shrink-0 mt-0.5"></i>
+                        <span><strong>StartupBae AI Solution:</strong> All-in-one operating system replacing your CRM, email tools, calendar, funnel builder, and phone system.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Everything You Need in One Platform -->
+    <section id="platform" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-3">Comprehensive Suite</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Everything You Need in One Platform
+                </h3>
+                <p class="mt-4 text-slate-600">Power your marketing, sales, customer support, and operations with enterprise-grade tools built for speed.</p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Feature 1 -->
+                <div class="p-6 rounded-2xl border border-slate-200 hover:border-brand-500/50 hover:shadow-soft transition bg-white group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-4 group-hover:gradient-bg group-hover:text-white transition">
+                        <i data-lucide="phone-call" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">AI Voice Receptionist</h4>
+                    <p class="text-xs text-slate-500">Answers inbound calls naturally, answers FAQs, and books meetings for your team.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="p-6 rounded-2xl border border-slate-200 hover:border-brand-500/50 hover:shadow-soft transition bg-white group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-4 group-hover:gradient-bg group-hover:text-white transition">
+                        <i data-lucide="message-square" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">AI Chat Assistant</h4>
+                    <p class="text-xs text-slate-500">Engages website visitors 24/7, qualifies intent, and guides them smoothly to checkout.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-6 rounded-2xl border border-slate-200 hover:border-brand-500/50 hover:shadow-soft transition bg-white group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-4 group-hover:gradient-bg group-hover:text-white transition">
+                        <i data-lucide="kanban" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">CRM & Sales Pipeline</h4>
+                    <p class="text-xs text-slate-500">Visual drag-and-drop pipelines to track deals, stages, and predicted revenue.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="p-6 rounded-2xl border border-slate-200 hover:border-brand-500/50 hover:shadow-soft transition bg-white group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-4 group-hover:gradient-bg group-hover:text-white transition">
+                        <i data-lucide="calendar" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">Appointment Scheduling</h4>
+                    <p class="text-xs text-slate-500">Smart booking links with round-robin distribution and automated reminders.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="p-6 rounded-2xl border border-slate-200 hover:border-brand-500/50 hover:shadow-soft transition bg-white group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-4 group-hover:gradient-bg group-hover:text-white transition">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">Email Marketing</h4>
+                    <p class="text-xs text-slate-500">High-deliverability broadcasts, automated sequences, and visual drag-and-drop builders.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="p-6 rounded-2xl border border-slate-200 hover:border-brand-500/50 hover:shadow-soft transition bg-white group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-4 group-hover:gradient-bg group-hover:text-white transition">
+                        <i data-lucide="smartphone" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">SMS & WhatsApp Marketing</h4>
+                    <p class="text-xs text-slate-500">Direct mobile outreach with 98% open rates and two-way automated conversational text streams.</p>
+                </div>
+
+                <!-- Feature 7 -->
+                <div class="p-6 rounded-2xl border border-slate-200 hover:border-brand-500/50 hover:shadow-soft transition bg-white group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-4 group-hover:gradient-bg group-hover:text-white transition">
+                        <i data-lucide="git-merge" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">Workflow Automation</h4>
+                    <p class="text-xs text-slate-500">Trigger multi-step actions based on customer tags, form fills, or pipeline stages.</p>
+                </div>
+
+                <!-- Feature 8 -->
+                <div class="p-6 rounded-2xl border border-slate-200 hover:border-brand-500/50 hover:shadow-soft transition bg-white group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-4 group-hover:gradient-bg group-hover:text-white transition">
+                        <i data-lucide="layout" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">Website & Funnel Builder</h4>
+                    <p class="text-xs text-slate-500">Blazing-fast modern websites, landing pages, and conversion-optimized checkout funnels.</p>
+                </div>
+
+                <!-- Feature 9 -->
+                <div class="p-6 rounded-2xl border border-slate-200 hover:border-brand-500/50 hover:shadow-soft transition bg-white group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-4 group-hover:gradient-bg group-hover:text-white transition">
+                        <i data-lucide="star" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">Reputation Management</h4>
+                    <p class="text-xs text-slate-500">Automatically harvest 5-star Google and Facebook reviews from happy clients.</p>
+                </div>
+
+                <!-- Feature 10 -->
+                <div class="p-6 rounded-2xl border border-slate-200 hover:border-brand-500/50 hover:shadow-soft transition bg-white group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-4 group-hover:gradient-bg group-hover:text-white transition">
+                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">Payments & Invoices</h4>
+                    <p class="text-xs text-slate-500">Collect secure one-time payments, subscriptions, and send professional digital invoices.</p>
+                </div>
+
+                <!-- Feature 11 -->
+                <div class="p-6 rounded-2xl border border-slate-200 hover:border-brand-500/50 hover:shadow-soft transition bg-white group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-4 group-hover:gradient-bg group-hover:text-white transition">
+                        <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">Analytics Dashboard</h4>
+                    <p class="text-xs text-slate-500">Real-time reports tracking conversion rates, pipeline values, and marketing ROI.</p>
+                </div>
+
+                <!-- Feature 12 -->
+                <div class="p-6 rounded-2xl border border-slate-200 hover:border-brand-500/50 hover:shadow-soft transition bg-white group">
+                    <div class="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center mb-4 group-hover:gradient-bg group-hover:text-white transition">
+                        <i data-lucide="smartphone" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-1">Mobile App & Team Mgmt</h4>
+                    <p class="text-xs text-slate-500">Manage conversations, leads, and tasks on the go with our dedicated iOS & Android app.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: AI Employees -->
+    <section class="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#8b5cf6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-900/50 border border-brand-700 text-brand-300 text-xs font-semibold mb-3">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Autonomous Workforce
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    Supercharge Your Team with AI Employees
+                </h2>
+                <p class="mt-4 text-slate-400">Deploy intelligent digital workers trained specifically on your business data to handle repetitive operations 24/7.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- AI Card 1 -->
+                <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-2xl flex flex-col justify-between hover:border-brand-500 transition">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-brand-600/20 text-brand-400 flex items-center justify-center mb-4">
+                            <i data-lucide="headset" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">AI Receptionist</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Answers phone calls instantly, greets callers professionally, and routes urgent requests.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-700/60 text-xs text-brand-400 font-semibold flex items-center gap-1">
+                        <i data-lucide="check" class="w-3.5 h-3.5"></i> 24/7 Active
+                    </div>
+                </div>
+
+                <!-- AI Card 2 -->
+                <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-2xl flex flex-col justify-between hover:border-brand-500 transition">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-brand-600/20 text-brand-400 flex items-center justify-center mb-4">
+                            <i data-lucide="trending-up" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">AI Sales Assistant</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Qualifies inbound prospects by asking relevant discovery questions and checks budget criteria.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-700/60 text-xs text-brand-400 font-semibold flex items-center gap-1">
+                        <i data-lucide="check" class="w-3.5 h-3.5"></i> Instant Scoring
+                    </div>
+                </div>
+
+                <!-- AI Card 3 -->
+                <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-2xl flex flex-col justify-between hover:border-brand-500 transition">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-brand-600/20 text-brand-400 flex items-center justify-center mb-4">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">AI Customer Support</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Resolves standard client tickets, answers product FAQs, and updates account notes automatically.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-700/60 text-xs text-brand-400 font-semibold flex items-center gap-1">
+                        <i data-lucide="check" class="w-3.5 h-3.5"></i> Zero Wait Time
+                    </div>
+                </div>
+
+                <!-- AI Card 4 -->
+                <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-2xl flex flex-col justify-between hover:border-brand-500 transition">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-brand-600/20 text-brand-400 flex items-center justify-center mb-4">
+                            <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">AI Appointment Setter</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Coordinates calendars across team members and books meetings directly into open slots.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-700/60 text-xs text-brand-400 font-semibold flex items-center gap-1">
+                        <i data-lucide="check" class="w-3.5 h-3.5"></i> Smart Sync
+                    </div>
+                </div>
+
+                <!-- AI Card 5 -->
+                <div class="bg-slate-800/80 border border-slate-700 p-6 rounded-2xl flex flex-col justify-between hover:border-brand-500 transition">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-brand-600/20 text-brand-400 flex items-center justify-center mb-4">
+                            <i data-lucide="repeat" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">AI Follow-up Agent</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Nurtures cold or unresponsive leads via customized email and SMS threads until they convert.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-700/60 text-xs text-brand-400 font-semibold flex items-center gap-1">
+                        <i data-lucide="check" class="w-3.5 h-3.5"></i> Persistent Nurture
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Solutions by Industry -->
+    <section id="solutions" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-3">Tailored Solutions</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Built for Your Specific Industry
+                </h3>
+                <p class="mt-4 text-slate-600">Pre-built workflows and templates customized to solve unique operational bottlenecks in your business.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Industry 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-soft">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
+                            <i data-lucide="home" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900">Real Estate</h4>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Automate property inquiries, instant home valuations, and buyer follow-ups.</p>
+                    <div class="text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-700">
+                        <span class="font-semibold text-brand-600">Automation:</span> Lead submits Zillow inquiry → AI calls in 30 secs → Property viewing booked.
+                    </div>
+                </div>
+
+                <!-- Industry 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-soft">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
+                            <i data-lucide="wrench" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900">Home Services</h4>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Handle emergency dispatch calls, quotation requests, and technician scheduling.</p>
+                    <div class="text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-700">
+                        <span class="font-semibold text-brand-600">Automation:</span> Missed call received → AI SMS dispatched → Estimate appointment confirmed.
+                    </div>
+                </div>
+
+                <!-- Industry 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-soft">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
+                            <i data-lucide="smile" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900">Dental Clinics</h4>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Manage patient appointment bookings, checkups reminders, and insurance FAQs.</p>
+                    <div class="text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-700">
+                        <span class="font-semibold text-brand-600">Automation:</span> Patient books cleaning → Automated SMS reminders sent → Review requested post-visit.
+                    </div>
+                </div>
+
+                <!-- Industry 4 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-soft">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
+                            <i data-lucide="stethoscope" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900">Medical Clinics</h4>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">HIPAA-ready patient intake forms, consultation scheduling, and secure communication.</p>
+                    <div class="text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-700">
+                        <span class="font-semibold text-brand-600">Automation:</span> Intake form submitted → AI pre-qualifies details → Calendar slot assigned.
+                    </div>
+                </div>
+
+                <!-- Industry 5 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-soft">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
+                            <i data-lucide="scale" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900">Law Firms</h4>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Intake prospective legal clients, screen case details, and schedule consultations.</p>
+                    <div class="text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-700">
+                        <span class="font-semibold text-brand-600">Automation:</span> Case questionnaire filled → AI assesses category → Lawyer assigned consultation.
+                    </div>
+                </div>
+
+                <!-- Industry 6 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-soft">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
+                            <i data-lucide="award" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900">Coaches & Consultants</h4>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Sell high-ticket programs, host membership content, and run booking pipelines.</p>
+                    <div class="text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-700">
+                        <span class="font-semibold text-brand-600">Automation:</span> Webinar registration → Automated SMS/Email sequence → High-ticket call booked.
+                    </div>
+                </div>
+
+                <!-- Industry 7 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-soft">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
+                            <i data-lucide="briefcase" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900">Marketing Agencies</h4>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Manage multi-client campaigns, white-label reporting, and lead pipelines from one master login.</p>
+                    <div class="text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-700">
+                        <span class="font-semibold text-brand-600">Automation:</span> Client ad lead generated → Instant multi-channel nurture sequence deployed.
+                    </div>
+                </div>
+
+                <!-- Industry 8 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-soft">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
+                            <i data-lucide="dumbbell" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900">Fitness Studios</h4>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Automate trial class bookings, membership renewals, and class reminders.</p>
+                    <div class="text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-700">
+                        <span class="font-semibold text-brand-600">Automation:</span> Trial pass claimed → AI text reminder sent 2 hrs before class → Membership pitch post-class.
+                    </div>
+                </div>
+
+                <!-- Industry 9 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-soft">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
+                            <i data-lucide="utensils" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-900">Restaurants</h4>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">Handle table reservations, cater inquiries, and feedback requests seamlessly.</p>
+                    <div class="text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-700">
+                        <span class="font-semibold text-brand-600">Automation:</span> Table reserved online → Confirmation SMS sent → Feedback link texted next day.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Automation Showcase (Visual Workflow Timeline) -->
+    <section class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-3">Seamless Operations</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    How Automation Works for Your Business
+                </h3>
+                <p class="mt-4 text-slate-600">From the moment a lead enters your ecosystem to repeat revenue generation, StartupBae AI handles every touchpoint autonomously.</p>
+            </div>
+
+            <!-- Workflow Timeline Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+                <!-- Step 1 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 relative">
+                    <div class="w-8 h-8 rounded-full gradient-bg text-white font-bold text-xs flex items-center justify-center mb-4 shadow-md">1</div>
+                    <h4 class="font-bold text-slate-900 mb-1">Lead Arrives</h4>
+                    <p class="text-xs text-slate-500">Captured instantly from ads, website forms, inbound phone calls, or social DMs.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 relative">
+                    <div class="w-8 h-8 rounded-full gradient-bg text-white font-bold text-xs flex items-center justify-center mb-4 shadow-md">2</div>
+                    <h4 class="font-bold text-slate-900 mb-1">AI Responds Instantly</h4>
+                    <p class="text-xs text-slate-500">AI voice or text replies in under 3 seconds to qualify the inquiry and understand requirements.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 relative">
+                    <div class="w-8 h-8 rounded-full gradient-bg text-white font-bold text-xs flex items-center justify-center mb-4 shadow-md">3</div>
+                    <h4 class="font-bold text-slate-900 mb-1">Appointment Booked</h4>
+                    <p class="text-xs text-slate-500">Meeting or service slot assigned on the calendar without manual back-and-forth emails.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 relative">
+                    <div class="w-8 h-8 rounded-full gradient-bg text-white font-bold text-xs flex items-center justify-center mb-4 shadow-md">4</div>
+                    <h4 class="font-bold text-slate-900 mb-1">Reminder Sent</h4>
+                    <p class="text-xs text-slate-500">Automated SMS & email reminders dispatched to eliminate costly no-shows.</p>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 relative">
+                    <div class="w-8 h-8 rounded-full gradient-bg text-white font-bold text-xs flex items-center justify-center mb-4 shadow-md">5</div>
+                    <h4 class="font-bold text-slate-900 mb-1">Customer Visits / Purchases</h4>
+                    <p class="text-xs text-slate-500">Transaction completed, invoices logged, and deal status updated inside the CRM pipeline.</p>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 relative">
+                    <div class="w-8 h-8 rounded-full gradient-bg text-white font-bold text-xs flex items-center justify-center mb-4 shadow-md">6</div>
+                    <h4 class="font-bold text-slate-900 mb-1">Review Requested</h4>
+                    <p class="text-xs text-slate-500">Reputation automation requests a 5-star Google review right after service delivery.</p>
+                </div>
+
+                <!-- Step 7 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 relative">
+                    <div class="w-8 h-8 rounded-full gradient-bg text-white font-bold text-xs flex items-center justify-center mb-4 shadow-md">7</div>
+                    <h4 class="font-bold text-slate-900 mb-1">Lead Nurtured</h4>
+                    <p class="text-xs text-slate-500">Long-term email and SMS sequences keep your brand top-of-mind for future needs.</p>
+                </div>
+
+                <!-- Step 8 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 relative">
+                    <div class="w-8 h-8 rounded-full gradient-bg text-white font-bold text-xs flex items-center justify-center mb-4 shadow-md">8</div>
+                    <h4 class="font-bold text-slate-900 mb-1">Repeat Business</h4>
+                    <p class="text-xs text-slate-500">Automated loyalty offers and re-engagement campaigns bring customers back consistently.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Why Businesses Choose StartupBae -->
+    <section class="py-24 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-400 uppercase tracking-widest mb-3">Unmatched Value</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    Why Businesses Choose StartupBae AI
+                </h3>
+                <p class="mt-4 text-slate-400">Designed to maximize profitability while minimizing operational stress.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-slate-800/60 p-6 rounded-2xl border border-slate-700/80">
+                    <div class="w-10 h-10 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center mb-4">
+                        <i data-lucide="layers" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">One Unified Login</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">Replace multiple disconnected apps and save thousands in monthly software costs.</p>
+                </div>
+
+                <div class="bg-slate-800/60 p-6 rounded-2xl border border-slate-700/80">
+                    <div class="w-10 h-10 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center mb-4">
+                        <i data-lucide="clock" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">AI Available 24/7</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">Never miss a late-night inquiry or weekend phone call again.</p>
+                </div>
+
+                <div class="bg-slate-800/60 p-6 rounded-2xl border border-slate-700/80">
+                    <div class="w-10 h-10 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center mb-4">
+                        <i data-lucide="zap" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Lightning-Fast Speed</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">Instant lead engagement ensures higher conversion rates than competitors.</p>
+                </div>
+
+                <div class="bg-slate-800/60 p-6 rounded-2xl border border-slate-700/80">
+                    <div class="w-10 h-10 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center mb-4">
+                        <i data-lucide="users" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Dedicated Support</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">White-glove onboarding and continuous expert assistance for your team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Pricing -->
+    <section id="pricing" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-3">Transparent Investment</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Simple, Scalable Plans for Every Business
+                </h3>
+                <p class="mt-4 text-slate-600">Choose the tier that fits your stage of growth. Scale up seamlessly anytime.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                <!-- Starter Plan -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-soft flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs font-bold text-brand-600 uppercase tracking-wider mb-2">Starter</div>
+                        <h4 class="text-2xl font-extrabold text-slate-900 mb-1">Growing Businesses</h4>
+                        <p class="text-xs text-slate-500 mb-6">Essential tools to organize leads and automate routine client communication.</p>
+                        
+                        <ul class="space-y-3 text-sm text-slate-600 mb-8">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Full CRM & Pipeline</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> AI Chat Assistant</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Appointment Scheduling</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Email & SMS Marketing</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Up to 3 Team Users</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full text-center py-3 rounded-xl border border-slate-200 font-semibold text-slate-800 hover:bg-slate-50 transition">
+                        Contact Sales
+                    </a>
+                </div>
+
+                <!-- Growth Plan (Highlighted) -->
+                <div class="bg-white p-8 rounded-2xl border-2 border-brand-500 shadow-glow relative flex flex-col justify-between transform lg:-translate-y-2">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 gradient-bg text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                        Most Popular
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-brand-600 uppercase tracking-wider mb-2">Growth</div>
+                        <h4 class="text-2xl font-extrabold text-slate-900 mb-1">Scaling Businesses</h4>
+                        <p class="text-xs text-slate-500 mb-6">Advanced AI workforce capabilities and multi-channel automation for scaling operations.</p>
+                        
+                        <ul class="space-y-3 text-sm text-slate-600 mb-8">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i> Everything in Starter</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i> AI Voice Receptionist</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i> All 5 AI Employees</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i> Advanced Workflow Builder</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i> Unlimited Team Users</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full text-center py-3 rounded-xl gradient-bg text-white font-semibold shadow-md hover:opacity-95 transition">
+                        Book a Demo
+                    </a>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-soft flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs font-bold text-brand-600 uppercase tracking-wider mb-2">Enterprise</div>
+                        <h4 class="text-2xl font-extrabold text-slate-900 mb-1">Large Teams & Agencies</h4>
+                        <p class="text-xs text-slate-500 mb-6">Custom integration, dedicated account management, and white-label branding options.</p>
+                        
+                        <ul class="space-y-3 text-sm text-slate-600 mb-8">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Everything in Growth</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Custom AI Voice Training</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Dedicated Success Manager</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Custom API Integrations</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> White-Label Option</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full text-center py-3 rounded-xl border border-slate-200 font-semibold text-slate-800 hover:bg-slate-50 transition">
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Testimonials -->
+    <section class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-3">Client Success Stories</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Trusted by Fast-Growing Companies
+                </h3>
+                <p class="mt-4 text-slate-600">See how business owners use StartupBae AI to reclaim hours and scale revenue.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 flex flex-col justify-between">
+                    <p class="text-slate-700 text-sm leading-relaxed mb-6">"StartupBae AI replaced 5 different tools for our real estate agency. Our AI receptionist alone books 15-20 property viewings every single week while we sleep."</p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-200">
+                        <div class="w-10 h-10 rounded-full bg-brand-200 font-bold flex items-center justify-center text-brand-800 text-sm">JD</div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-900">Jessica Davies</div>
+                            <div class="text-xs text-slate-500">Brokerage Owner, Apex Realty</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 flex flex-col justify-between">
+                    <p class="text-slate-700 text-sm leading-relaxed mb-6">"The speed-to-lead automation is unreal. Inbound leads get a phone call or text within seconds. Our booking conversion rate has jumped by 42% in just two months."</p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-200">
+                        <div class="w-10 h-10 rounded-full bg-brand-200 font-bold flex items-center justify-center text-brand-800 text-sm">MR</div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-900">Marcus Reynolds</div>
+                            <div class="text-xs text-slate-500">Founder, Metro Home Services</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 flex flex-col justify-between">
+                    <p class="text-slate-700 text-sm leading-relaxed mb-6">"As a dental clinic, missing calls equals losing high-value patients. StartupBae AI's voice agent handles patient inquiries smoothly. Setup was fast and support is fantastic."</p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-200">
+                        <div class="w-10 h-10 rounded-full bg-brand-200 font-bold flex items-center justify-center text-brand-800 text-sm">Dr</div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-900">Dr. Robert Chen</div>
+                            <div class="text-xs text-slate-500">Director, Smile Dental Group</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: About -->
+    <section id="about" class="py-24 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-3">Leadership</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    About the Founder
+                </h3>
+                <p class="mt-4 text-slate-600">The vision behind the AI Business Operating System.</p>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-soft max-w-3xl mx-auto text-center space-y-6">
+                <div>
+                    <h4 class="text-2xl font-extrabold text-slate-900">Priyanka Sharma</h4>
+                    <div class="text-sm font-semibold text-brand-600 mt-0.5">Founder, StartupBae AI</div>
+                </div>
+                <p class="text-slate-600 text-sm leading-relaxed max-w-2xl mx-auto">
+                    Hi, I'm Priyanka Sharma, Founder of StartupBae AI. I help businesses streamline operations, automate customer journeys, and scale efficiently using AI, CRM systems, and workflow automation. My focus is on building practical solutions that save time, reduce manual work, and improve customer experience. StartupBae AI was created to give businesses an all-in-one platform for managing leads, sales, marketing, customer communication, and AI-powered automation.
+                </p>
+                <div class="pt-2 flex items-center justify-center gap-4">
+                    <a href="#contact" class="inline-flex items-center gap-2 text-xs font-semibold text-brand-600 hover:text-brand-700">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Frequently Asked Questions -->
+    <section class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-3">Got Questions?</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Frequently Asked Questions
+                </h3>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <details class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm group">
+                    <summary class="font-bold text-slate-900 cursor-pointer flex items-center justify-between">
+                        How quickly can I get started?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                    </summary>
+                    <p class="mt-4 text-sm text-slate-600 leading-relaxed">You can set up your account instantly. Most businesses are fully configured and running their first AI workflows within 24 to 48 hours with our guided onboarding.</p>
+                </details>
+
+                <!-- FAQ 2 -->
+                <details class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm group">
+                    <summary class="font-bold text-slate-900 cursor-pointer flex items-center justify-between">
+                        Can StartupBae AI replace my current CRM?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                    </summary>
+                    <p class="mt-4 text-sm text-slate-600 leading-relaxed">Yes! StartupBae AI is built to fully replace standard CRMs while also replacing your email marketing software, scheduling calendar, funnel builder, and voice/chat tools.</p>
+                </details>
+
+                <!-- FAQ 3 -->
+                <details class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm group">
+                    <summary class="font-bold text-slate-900 cursor-pointer flex items-center justify-between">
+                        Do you help with setup?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                    </summary>
+                    <p class="mt-4 text-sm text-slate-600 leading-relaxed">Absolutely. Every plan includes dedicated onboarding support to ensure your pipelines, calendars, and AI assistants are tailored perfectly to your operations.</p>
+                </details>
+
+                <!-- FAQ 4 -->
+                <details class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm group">
+                    <summary class="font-bold text-slate-900 cursor-pointer flex items-center justify-between">
+                        Can I migrate existing data?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                    </summary>
+                    <p class="mt-4 text-sm text-slate-600 leading-relaxed">Yes, you can easily import contacts, leads, and customer history via CSV upload, or our technical support team can assist you with data migration.</p>
+                </details>
+
+                <!-- FAQ 5 -->
+                <details class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm group">
+                    <summary class="font-bold text-slate-900 cursor-pointer flex items-center justify-between">
+                        Does StartupBae AI support AI voice and chat?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                    </summary>
+                    <p class="mt-4 text-sm text-slate-600 leading-relaxed">Yes, our platform includes state-of-the-art AI voice receptionists for inbound phone calls and intelligent web/SMS chat assistants that operate 24/7.</p>
+                </details>
+
+                <!-- FAQ 6 -->
+                <details class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm group">
+                    <summary class="font-bold text-slate-900 cursor-pointer flex items-center justify-between">
+                        Can I integrate with other software?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                    </summary>
+                    <p class="mt-4 text-sm text-slate-600 leading-relaxed">StartupBae AI integrates smoothly with thousands of apps via Zapier, Webhooks, and direct native API connections.</p>
+                </details>
+
+                <!-- FAQ 7 -->
+                <details class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm group">
+                    <summary class="font-bold text-slate-900 cursor-pointer flex items-center justify-between">
+                        Is training included?
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                    </summary>
+                    <p class="mt-4 text-sm text-slate-600 leading-relaxed">Yes, we provide live training sessions, video walkthrough documentation, and ongoing support to ensure your team masters the platform quickly.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section / Contact Section -->
+    <section class="py-24 bg-slate-50 border-t border-slate-100 relative overflow-hidden" id="contact">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="p-10 sm:p-16 rounded-3xl gradient-bg text-white shadow-2xl relative overflow-hidden mb-12">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                
+                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 relative z-10">
+                    Ready to Grow with AI?
+                </h2>
+                <p class="text-purple-100 text-base sm:text-lg max-w-2xl mx-auto mb-8 relative z-10">
+                    Book a personalized demo and see how StartupBae AI can automate your business workflows and scale revenue.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
+                    <a href="https://wa.me/919740326160" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-white text-slate-900 font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-slate-50 transition">
+                        Book Demo
+                    </a>
+                    <a href="mailto:hello@startupbae.com" class="w-full sm:w-auto bg-brand-700/80 border border-brand-400/30 text-white font-semibold px-8 py-4 rounded-xl hover:bg-brand-700 transition">
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+
+            <!-- Direct Contact Details Card -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-soft max-w-xl mx-auto text-center">
+                <h3 class="text-lg font-bold text-slate-900 mb-2">Direct Contact Channels</h3>
+                <p class="text-xs text-slate-500 mb-6">Have immediate questions? Reach out to us directly through WhatsApp or email.</p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                    <!-- WhatsApp Link -->
+                    <a href="https://wa.me/919740326160" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-100 hover:bg-emerald-100 transition text-sm font-semibold w-full sm:w-auto justify-center">
+                        <i data-lucide="message-square" class="w-4 h-4"></i>
+                        <span>+91 97403 26160</span>
+                    </a>
+
+                    <!-- Email Link -->
+                    <a href="mailto:hello@startupbae.com" class="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-brand-50 text-brand-700 border border-brand-100 hover:bg-brand-100 transition text-sm font-semibold w-full sm:w-auto justify-center">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        <span>hello@startupbae.com</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+                <!-- Col 1: Brand -->
+                <div class="col-span-2">
+                    <a href="#" class="flex items-center gap-2 text-2xl font-extrabold text-white tracking-tight mb-4">
+                        <div class="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center text-white">
+                            <i data-lucide="zap" class="w-4 h-4"></i>
+                        </div>
+                        <span>Startup<span class="gradient-text">Bae AI</span></span>
+                    </a>
+                    <p class="text-xs text-slate-400 max-w-sm leading-relaxed mb-6">
+                        The AI-powered Business Operating System built to manage leads, automate client communication, and scale revenue from a single intuitive platform.
+                    </p>
+                    <div class="text-xs text-slate-500">© 2026 StartupBae AI Inc. All rights reserved.</div>
+                </div>
+
+                <!-- Col 2: Platform -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Platform</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#platform" class="hover:text-white transition">AI Receptionist</a></li>
+                        <li><a href="#platform" class="hover:text-white transition">CRM Pipeline</a></li>
+                        <li><a href="#platform" class="hover:text-white transition">Marketing Automation</a></li>
+                        <li><a href="#platform" class="hover:text-white transition">Workflows</a></li>
+                        <li><a href="#platform" class="hover:text-white transition">Mobile App</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Solutions -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Solutions</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#solutions" class="hover:text-white transition">Real Estate</a></li>
+                        <li><a href="#solutions" class="hover:text-white transition">Home Services</a></li>
+                        <li><a href="#solutions" class="hover:text-white transition">Dental & Medical</a></li>
+                        <li><a href="#solutions" class="hover:text-white transition">Coaches & Agencies</a></li>
+                        <li><a href="#solutions" class="hover:text-white transition">Local Businesses</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Resources -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Resources</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#resources" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#resources" class="hover:text-white transition">Documentation</a></li>
+                        <li><a href="#resources" class="hover:text-white transition">Guides</a></li>
+                        <li><a href="#resources" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#resources" class="hover:text-white transition">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom row: Legal -->
+            <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <div class="flex items-center gap-6">
+                    <a href="#" class="hover:text-slate-400 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-slate-400 transition">Terms of Service</a>
+                    <a href="#" class="hover:text-slate-400 transition">Security</a>
+                </div>
+                <div>Secure Cloud Infrastructure • 99.9% Uptime SLA</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons & Mobile Menu Toggle Script -->
+    <script>
+        lucide.createIcons();
+
+        // Mobile menu toggle functionality
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking nav links
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
 </html>
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a54bb22d166a8719fedbf22"></script>
